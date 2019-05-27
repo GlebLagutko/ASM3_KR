@@ -43,8 +43,18 @@ _ShiftMatrix proc
 
      push	ebp
 	 mov	ebp,		esp
-     mov eax,dword ptr[ebp + 16]
 	 mov edx,dword ptr[ebp + 12]
+	 mov eax,[edx + 4]
+	 mov ebx,[edx + 8]
+	 mark2:
+	 cmp eax,ebx
+	 jg mark1
+	 sub ebx,eax
+	 jmp mark2
+	 mark1:
+	 mov [edx + 8],ebx
+     mov eax,dword ptr[ebp + 16]
+
 	 mov esi,dword ptr[ebp + 8]
 
 	 mov ecx,dword ptr[edx];

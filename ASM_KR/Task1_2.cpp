@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
 	std::wcout << std::endl;
 	//Task2
 	int N, M, K;
-	std::wcout << L"Input N and M , and K < M: ";
+	std::wcout << L"Input N and M , and K : ";
 	std::wcin >> N >> M >> K;
 
 	int** matrix = new int*[N];
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 		for (int j = 0; j < M; j++)
 		{
 			matrix[i][j] = rand() % 100;
-			b[j] = 0;
+			//b[j] = 0;
 		}
 	}
 
