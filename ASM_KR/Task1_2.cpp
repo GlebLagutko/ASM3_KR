@@ -8,7 +8,7 @@
 extern "C"
 {
 
-	void __cdecl lcm(int y,int* x );
+	int __cdecl lcm(int y,int* x );
 	void __cdecl ShiftMatrix(int*  b, int* c,int** x);
 }
 
@@ -16,7 +16,7 @@ extern "C"
 
 int main(int argc, char* argv[])
 {
-	//Program().Run();
+	
 
 	//Task1
 	int a_size;
@@ -29,12 +29,16 @@ int main(int argc, char* argv[])
 		arr[i] = rand() % 20 + 1;
 	}
 
+	std::wcout << std::endl;
+
 	for (int i = 0; i < a_size; i++)
 	{
 		std::wcout << arr[i] << std::endl;
 	}
 
 	std::wcout << std::endl;;
+
+	
 	__asm
 	{
 		push arr

@@ -1,12 +1,8 @@
 .686
-.model flat
-.stack
-
-
 public _lcm
 public _ShiftMatrix
-
-
+.model flat
+.stack
 
 NOD macro expression1, expression2
 
@@ -53,11 +49,8 @@ _ShiftMatrix proc
 	 mark1:
 	 mov dword ptr[edx + 8],ebx
      mov eax,dword ptr[esp + 12]
-
-	 mov esi,dword ptr[esp + 4]
-
 	 mov ecx,dword ptr[edx];
-	 ; lines
+	 ; getlines
 	 _loop1 :
 
 	 mov edi,dword ptr[eax + ecx*4 - 4]
@@ -102,6 +95,7 @@ _ShiftMatrix proc
      mov ecx,dword ptr[edx]	
 	 mov dword ptr[eax + ecx*4 - 4],edi
 	 loop _loop1
+
 	 ret 
 
 _ShiftMatrix endp
