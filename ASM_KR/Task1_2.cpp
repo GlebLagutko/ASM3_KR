@@ -8,7 +8,7 @@
 extern "C"
 {
 
-	void __cdecl FindNOK(int y,int* x );
+	void __cdecl lcm(int y,int* x );
 	void __cdecl ShiftMatrix(int*  b, int* c,int** x);
 }
 
@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	{
 		push arr
 		push a_size
-		call FindNOK
+		call lcm
 		mov result, eax
 	}
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 		for (int j = 0; j < M; j++)
 		{
 			matrix[i][j] = rand() % 100;
-			//b[j] = 0;
+			b[j] = 0;
 		}
 	}
 

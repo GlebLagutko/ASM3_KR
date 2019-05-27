@@ -3,7 +3,7 @@
 .stack
 
 
-public _FindNOK
+public _lcm
 public _ShiftMatrix
 
 
@@ -41,21 +41,20 @@ endm
 _ShiftMatrix proc
 
 
-     push	ebp
-	 mov	ebp,		esp
-	 mov edx,dword ptr[ebp + 12]
-	 mov eax,[edx + 4]
-	 mov ebx,[edx + 8]
+    
+	 mov edx,dword ptr[esp + 8]
+	 mov eax,dword ptr[edx + 4]
+	 mov ebx,dword ptr[edx + 8]
 	 mark2:
 	 cmp eax,ebx
 	 jg mark1
 	 sub ebx,eax
 	 jmp mark2
 	 mark1:
-	 mov [edx + 8],ebx
-     mov eax,dword ptr[ebp + 16]
+	 mov dword ptr[edx + 8],ebx
+     mov eax,dword ptr[esp + 12]
 
-	 mov esi,dword ptr[ebp + 8]
+	 mov esi,dword ptr[esp + 4]
 
 	 mov ecx,dword ptr[edx];
 	 ; lines
@@ -67,7 +66,7 @@ _ShiftMatrix proc
 	 ; change lines
 
 	 _loop2 :
-	  mov edx,dword ptr[ebp + 12]
+	  mov edx,dword ptr[esp + 8]
 	  mov ebx,dword ptr[edx + 8]
 	  mov eax, dword ptr[edx + 4]
 	  sub eax,ebx
@@ -76,7 +75,7 @@ _ShiftMatrix proc
 	  add eax,ebx
 	  mov esi,dword ptr[edx + 4]
 	  sub eax,esi
-	  mov esi,dword ptr[ebp + 8]
+	  mov esi,dword ptr[esp + 4]
 	  mov edx,dword ptr[edi + ecx*4 -4]
 	  
 	  mov dword ptr[esi + eax*4 - 4],edx
@@ -88,32 +87,30 @@ _ShiftMatrix proc
 	  .endif
 	 
 	 loop _loop2
-	mov edx,dword ptr[ebp + 12]
+	mov edx,dword ptr[esp + 8]
 	mov ecx,dword ptr[edx + 4]
 
 	 _loop3 :
 	 mov edx,dword ptr[esi + ecx*4 -4]
 	 mov dword ptr[edi + ecx*4 -4],edx
 	 loop _loop3
-	 mov edx,dword ptr[ebp + 12]
+	 mov edx,dword ptr[esp + 8]
 	 mov ecx,dword ptr[edx + 4]
 	 
-	  mov edx,dword ptr[ebp + 12]
-	 mov eax,dword ptr[ebp + 16]
+	  mov edx,dword ptr[esp + 8]
+	 mov eax,dword ptr[esp + 12]
      mov ecx,dword ptr[edx]	
 	 mov dword ptr[eax + ecx*4 - 4],edi
 	 loop _loop1
-	 pop ebp
-	 ret 4;
+	 ret 
 
 _ShiftMatrix endp
 
-_FindNOK proc
+_lcm proc
 
-    push	ebp
-	 mov	ebp,		esp
- 	mov edi, dword ptr[ebp + 12];
-	mov ecx, dword ptr[ebp + 8];
+    
+ 	mov edi, dword ptr[esp + 8];
+	mov ecx, dword ptr[esp + 4];
 	mov eax,dword ptr[edi + ecx*4 -4]
 	mov esi,eax
 	sub ecx,1
@@ -129,9 +126,7 @@ _FindNOK proc
 	loop cycle1
 
 	mov eax,esi
-	
-	
-	pop ebp
-	ret 4;
-_FindNOK endp
+
+	ret 
+_lcm endp
 end
